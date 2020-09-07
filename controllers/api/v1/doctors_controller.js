@@ -1,7 +1,7 @@
 const Doctor = require('../../../models/doctor');
 const jwt = require('jsonwebtoken');
 
-//Create/Register the doctor in db by using name,email and password
+//Register Controller
 module.exports.register = async function(req, res){
 
     //Check if all field enter
@@ -54,7 +54,7 @@ module.exports.register = async function(req, res){
     }
 }
 
-//Login for Doctor using email and password, generate JWT token for doc
+//Login Controller
 module.exports.login = async function(req, res){
     
     if(req.body.email==undefined || req.body.password==undefined){

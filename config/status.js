@@ -1,5 +1,5 @@
 
-//status of the Covid Patients
+//Status code for covid 19 patient
 const enums={'0':'Negative', 
                '1':'Travelled-Quarantine', 
                '2':'Symptoms-Quarantine',

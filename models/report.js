@@ -1,5 +1,4 @@
-const mongoose=require('mongoose');   
-//Reports Schema      
+const mongoose=require('mongoose');        
 const reportSchema=new mongoose.Schema({
     doctor:{                                  
         type:mongoose.Schema.Types.ObjectId,
@@ -19,7 +18,5 @@ const reportSchema=new mongoose.Schema({
 {
     timestamps:true                            
 });
-
-// exports user
 const Report=mongoose.model('Report',reportSchema);
 module.exports=Report;

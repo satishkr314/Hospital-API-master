@@ -1,5 +1,5 @@
-const mongoose=require('mongoose'); 
-//Patient Schema      
+//Schema for patient detail
+const mongoose=require('mongoose');      
 const patientSchema=new mongoose.Schema({
     name:{                                      
         type:String,
@@ -10,19 +10,13 @@ const patientSchema=new mongoose.Schema({
         required:true,
         unique:true
     },
-    // password:{                                  
-    //     type:String,
-    //     required:true
-    // },
     reports:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:'report',
     }]
 },
 {
-    timestamps:true                             //store timestamps
+    timestamps:true                             
 });
-
-// exports user
 const Patient=mongoose.model('Patient',patientSchema);
 module.exports=Patient;

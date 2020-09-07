@@ -3,29 +3,27 @@ const Report = require('../../../models/report');
 let Doctor = require('../../../models/doctor');
 const Status = require('../../../config/status');
 
-//Register a patient using name,phone and password
+//Registering patient
 module.exports.register = async function(req, res){
 
     if(req.body.phone==undefined || req.body.name==undefined){
         return res.status(206).json({
-            message: 'Incomplete data provided'
+            message: 'Fill all data'
         });
     }
 
-    let phone = req.body.phone;
-    //Checking if patient is already registered in db
-    let patientExists = await Patient.findOne({phone: phone});
+    let patientExists = await Patient.findOne({phone: req.body.phone});
     if(patientExists){
         return res.status(405).json({
             data:{
                 patient:patientExists
             },
-            message: 'Patient already Registered DB'
+            message: 'Patient Exists'
         })
     }
 
     try{
-        //IF Patient is new Register new patient
+        //Adding Patient
         let createdPatient = await Patient.create(req.body);
         if(createdPatient){
             return res.status(200).json({
@@ -33,23 +31,23 @@ module.exports.register = async function(req, res){
                     patient:createdPatient,
                     
                 },
-                message: 'Patient Successfully Registered'
+                message: 'Patient Successfully Added'
             });
         }
         else{
             return res.status(500).json({
-                message: 'OOPS!! error'
+                message: 'Error in addin patient'
             });
         }
     }
     catch(err){
         return res.status(500).json({
-            message: 'OOPS!! error'
+            message: 'Cannot add patient'
         });
     }
 }
 
-//Create a Report for the patient using status and doctor ids
+//Creating report of patient
 module.exports.createReport = async function(req, res){
 
     let patientId = req.params.id;
@@ -57,19 +55,17 @@ module.exports.createReport = async function(req, res){
 
     if(patientId==undefined || docId==undefined){
         return res.status(206).json({
-            message: 'Incomplete data provided'
+            message: 'Fill complete data'
         });
     }
 
-    //get/mapping status of the patient from config folder
+    //updating status
     let st = req.body.status;
     req.body.status = Status[st];
     try{
         let patient = await Patient.findById(req.params.id);
         let doctor = await Doctor.findById(req.body.doctor);
 
-        //If the patient and doctor ids both exist only
-        //then report created
         if(patient && doctor){
             req.body.patient = patientId;
             let report = await Report.create(req.body);
@@ -88,24 +84,23 @@ module.exports.createReport = async function(req, res){
                         date: report.createdAt
                     }
                 },
-                message: 'Report successfully Created'
+                message: 'Report Updated'
             })
         }
         else{
             return res.status(401).json({
-                message: 'Patient/Doctor is not Registered'
+                message: 'Invalid detail'
             });
         }
     }
     catch(err){
         console,log(err);
         return res.status(500).json({
-            message: 'Oops!! Eror'
+            message: 'Error in updating'
         });
     }
 }
-
-//fetchall reports of a patient 
+// showing all detail
 module.exports.allReports = async function(req, res){
     
     try{
@@ -115,13 +110,13 @@ module.exports.allReports = async function(req, res){
             data:{
                     report
             },
-            message:'All reports of the patient',
+            message:'Complete patient Detail',
           //details:report
         })
       }
       catch(err){
           return res.status(500).json({
-          message:'OOPS!! Error Occured!'
+          message:'Error in showing all detail'
         })
       }
     };

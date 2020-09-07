@@ -1,6 +1,5 @@
-//require mongoose
-const mongoose=require('mongoose');  
-//doctors Schema       
+//Schema for creating doctors
+const mongoose=require('mongoose');       
 const docSchema=new mongoose.Schema({
     name:{                                      
         type:String,
@@ -19,7 +18,5 @@ const docSchema=new mongoose.Schema({
 {
     timestamps:true                             
 });
-
-// exports user
 const Doctor=mongoose.model('Doctor',docSchema);
 module.exports=Doctor;
