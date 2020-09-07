@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/HospitalAPI',{useNewUrlParser: true});
+mongoose.connect('mongodb://localhost/CoranaDetails',{useNewUrlParser: true});
 
 const db = mongoose.connection;
 

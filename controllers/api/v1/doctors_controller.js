@@ -5,15 +5,17 @@ const jwt = require('jsonwebtoken');
 module.exports.register = async function(req, res){
 
     //Check if all field enter
-    if(req.body.email==undefined || req.body.name==undefined || req.body.password==undefined){
+    if(req.body.email==undefined || req.body.name==undefined || req.body.password==undefined)
+    {
         return res.status(206).json({
-            message: 'Incomplete data provided'
+            message: 'Fill complete Detail'
         });
     }
     
-    //Check if the doctor is already registered in db
+    
+    //verifying Docters Existance 
     let Email = req.body.email;
-    let doctorExists = await Doctor.findOne({email: Email});
+    let doctorExists = await Doctor.findOne({email: req.body.email});
     if(doctorExists){
         doctorExists = await doctorExists.toObject();
         
@@ -23,7 +25,7 @@ module.exports.register = async function(req, res){
                 doctor: doctorExists
                 
             },
-            message: 'Doctor already registered'
+            message: 'Doctor Exists'
         });
     }
             
@@ -36,12 +38,12 @@ module.exports.register = async function(req, res){
                 data: {
                     doctor:createdDoctor
                 },
-                message: 'Successfully registered'
+                message: 'doctor Successfully registered'
             });
         }
         else{
             return res.status(500).json({
-                message: 'OOPS!! Error'
+                message: 'Error in registering doctor'
             });
         }
     }
