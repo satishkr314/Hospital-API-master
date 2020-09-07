@@ -2,18 +2,15 @@
 
 Designed an API which will give data related to covid-19 patient.
 
- `
-
 ## How to USE?
 
 URL: ` http://localhost:8000/api/v1`
 
-#### End Points:
+#### Router:
 1. `/doctor/register`(POST): Register the new doctor using name,email and password(all requireds).
-- 
+
 
 ![](/Images/1.png)
-
 
 
 2. `/doctor/login`(POST): Doctor can Login using email and password.
@@ -27,8 +24,6 @@ URL: ` http://localhost:8000/api/v1`
 #### Need for further use:
 
 ![](/Images/3.png)
-
-
 ![](/Images/4.png)
 
 
