@@ -12,13 +12,13 @@ URL: ` http://localhost:8000/api/v1`
 1. `/doctor/register`(POST): Register the new doctor using name,email and password(all requireds).
 - 
 
-![](/Images/1.JPG)
+![](/Images/1.png)
 
 
 
 2. `/doctor/login`(POST): Doctor can Login using email and password.
 
-![](/Images/2.JPG)
+![](/Images/2.png)
 
 
 
@@ -26,16 +26,16 @@ URL: ` http://localhost:8000/api/v1`
 
 #### Need for further use:
 
-![](/Images/3.JPG)
+![](/Images/3.png)
 
 
-![](/Images/4.JPG)
+![](/Images/4.png)
 
 
 
 4. `/patients/:id/create_report`(POST): Doctor can create report of the Patients.
 
-![](/Images/5.JPG)
+![](/Images/5.png)
 
 
 
